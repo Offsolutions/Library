@@ -79,3 +79,4 @@ D:\WebSites\Official solutions\Git\Library\LibraryManagement\LibraryManagement\b
 D:\WebSites\Official solutions\Git\Library\LibraryManagement\LibraryManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\WebSites\Official solutions\Git\Library\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.dll
 D:\WebSites\Official solutions\Git\Library\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.pdb
+D:\WebSites\Official solutions\Git\Library\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csprojResolveAssemblyReference.cache

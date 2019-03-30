@@ -14,5 +14,6 @@ namespace LibraryManagement.Models
         public string Name { get; set; }
 
         public virtual ICollection<Books> Books { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
     }
 }

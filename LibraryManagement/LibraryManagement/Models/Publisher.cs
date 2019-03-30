@@ -12,5 +12,6 @@ namespace LibraryManagement.Models
         public int Pid { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Books> Books { get; set; }
+        public IEnumerable<Publisher> Publishers { get; set; }
     }
 }

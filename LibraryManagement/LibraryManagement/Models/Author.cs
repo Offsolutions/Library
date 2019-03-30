@@ -13,5 +13,6 @@ namespace LibraryManagement.Models
         [Required]
         public string Name { get; set; }
         public virtual ICollection<Books> Books { get; set; }
+        public IEnumerable<Author> Authors { get; set; }
     }
 }

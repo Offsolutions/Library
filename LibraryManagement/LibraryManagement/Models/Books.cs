@@ -13,12 +13,13 @@ namespace LibraryManagement.Models
         [Display(Name ="Book Name")]
         public string Name { get; set; }
         public string ISBN { get; set; }
+        [Display (Name ="Category")]
         public int Cid { get; set; }
         public virtual Category Categories { get; set; }
-
+        [Display(Name = "Author")]
         public int Aid { get; set; }
         public virtual Author Authors { get; set; }
-
+        [Display(Name = "Publisher")]
         public int Pid { get; set; }
         public virtual Publisher Publishers { get; set; }
         [Display(Name="Book Copies")]
@@ -26,7 +27,7 @@ namespace LibraryManagement.Models
         public int Price { get; set; }
         [Display(Name ="Copyright Year")]
         public int Copyright { get; set; }
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime DateRecieved { get; set; }
 
         public string Notes { get; set; }

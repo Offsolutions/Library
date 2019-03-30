@@ -21,5 +21,7 @@ namespace LibraryManagement.Models
         public System.Data.Entity.DbSet<LibraryManagement.Models.Category> Categories { get; set; }
 
         public System.Data.Entity.DbSet<LibraryManagement.Models.Publisher> Publishers { get; set; }
+
+        public System.Data.Entity.DbSet<LibraryManagement.Models.Books> Books { get; set; }
     }
 }

@@ -1,0 +1,107 @@
+﻿@model LibraryManagement.Models.Books
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Books</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Authors.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Authors.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categories.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publishers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publishers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookCopies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookCopies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Copyright)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Copyright)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRecieved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRecieved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.boid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
