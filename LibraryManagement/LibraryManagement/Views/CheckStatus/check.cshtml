@@ -1,0 +1,161 @@
+﻿@model IEnumerable<LibraryManagement.Models.IssueBook>
+@using LibraryManagement.Models
+ @{
+     ViewBag.Title = "check";
+     Layout = "~/Views/Shared/Layout.cshtml";
+     dbcontext db = new dbcontext();
+}
+
+
+
+    @using (Html.BeginForm("check", "CheckStatus"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Enter Library Card Number</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label>Enter Library CardNumber</label>
+                @*@Html.EditorFor(model => model.Idnumber, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" name="id" class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-space btn-primary" />
+
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model != null)
+    {
+        int a = Convert.ToInt32(Session["id"]);
+        <a href="javascript:void(0);" onclick="AddBook(@a)" class="btn btn-danger">Add Issue Book</a>
+        <table class="table table-striped table-hover table-fw-widget" id="table5">
+            <thead>
+                <tr>
+                    <th>
+                        Student Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdCard)
+                    </th>
+                    <th>
+                       Book Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IssueDate)
+                    </th>
+                    <th>
+                        Due Date
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReturnDate)
+                    </th>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @db.Memberships.Find(item.Mid).StudentName
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdCard)
+                        </td>
+                        <td>
+                            @db.Books.Find(item.Bid).Name
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IssueDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReturnDate)
+                        </td>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Sid }, new { @class = " badge badge-primary" }) |
+
+                            <a href="javascript:void(0);" onclick="ReturnBook(@item.Sid)" class="badge badge-danger">Return Book</a> |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Sid }, new { @class = " badge badge-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+
+
+    <div class="modal fade colored-header colored-header-primary" id="form-bp1" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-colored">
+                    <h3 class="modal-title">Issue Book</h3>
+                    <button class="close md-close" type="button" data-dismiss="modal" aria-hidden="true"><span class="mdi mdi-close">       </span></button>
+                </div>
+                <div class="modal-body" id="myModalBodyDiv1">
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary md-close" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary md-close" type="button" data-dismiss="modal">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"
+            integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+            crossorigin="anonymous"></script>
+    @section scripts
+{
+        <script>
+
+
+            var AddBook = function (Member) {
+                debugger;
+                var url = "/CheckStatus/Add?id=" + Member;
+                // var url = "/Model/EmployeePartial";
+                $("#myModalBodyDiv1").load(url, function () {
+
+                    $("#form-bp1").modal("show");
+
+                })
+
+            }
+        </script>
+
+        <script>
+
+
+            var ReturnBook = function (Bookid) {
+                debugger;
+                var url = "/CheckStatus/ReturnBook?id=" + Bookid;
+                // var url = "/Model/EmployeePartial";
+                $("#myModalBodyDiv1").load(url, function () {
+
+                    $("#form-bp1").modal("show");
+
+                })
+
+            }
+        </script>
+    }

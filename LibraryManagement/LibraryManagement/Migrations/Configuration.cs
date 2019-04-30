@@ -5,15 +5,16 @@ namespace LibraryManagement.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<LibraryManagement.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<LibraryManagement.Models.dbcontext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
+            ContextKey = "LibraryManagement.Models.dbcontext";
         }
 
-        protected override void Seed(LibraryManagement.Models.ApplicationDbContext context)
+        protected override void Seed(LibraryManagement.Models.dbcontext context)
         {
             //  This method will be called after migrating to the latest version.
 

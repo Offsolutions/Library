@@ -27,6 +27,7 @@ namespace LibraryManagement.Models
         public int Price { get; set; }
         [Display(Name ="Copyright Year")]
         public int Copyright { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateRecieved { get; set; }
 

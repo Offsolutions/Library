@@ -1,0 +1,75 @@
+﻿@model LibraryManagement.Models.Membership
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Membership</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Batches.BatchNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Batches.BatchNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departments.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departments.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rollno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rollno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Mid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

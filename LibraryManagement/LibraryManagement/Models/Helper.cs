@@ -15,6 +15,9 @@ namespace LibraryManagement.Models
         dbcontext db = new dbcontext();
         public string _FileName;
         const string passphrase = "password";
+
+        public static string date = "", qnnty = "0";
+        private static TimeZoneInfo INDIAN_ZONE;
         public string uploadfile(HttpPostedFileBase file)
         {
             try
@@ -329,6 +332,12 @@ namespace LibraryManagement.Models
         //    tblreceptionist rr = db.tblreceptionists.Where(x => x.rid == a).First();
         //    return rr.franchid.ToString();
         //}
+        public DateTime TodayDate()
+        {
+            INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+            DateTime indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.Date, INDIAN_ZONE);
+            return indianTime;
+        }
     }
     public enum NotificationEnumeration
     {
@@ -336,6 +345,7 @@ namespace LibraryManagement.Models
         Error,
         Warning
     }
+   
 
 
 }

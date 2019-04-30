@@ -1,0 +1,63 @@
+﻿
+@model LibraryManagement.Models.IssueBook
+@using LibraryManagement.Models
+@{
+    dbcontext db = new dbcontext();
+    
+
+
+}
+
+@using (Html.BeginForm("Return", "CheckStatus"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model=>model.Mid)
+    @Html.HiddenFor(model => model.Bid)
+    @Html.HiddenFor(model => model.Status)
+    @Html.HiddenFor(model => model.IdCard)
+    @Html.HiddenFor(model => model.Sid)
+    @Html.HiddenFor(model => model.IssueDate)
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label>Student Name</label>
+                <input type="text" value="@db.Memberships.Find(Model.Mid).StudentName" class="form-control" />
+            </div>
+            <div class="form-group col-md-6">
+                <label>Book</label>
+                <input type="text" value="@db.Books.Find(Model.Bid).Name" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label>Due Date</label>
+                @Html.EditorFor(model => model.LastDate, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group col-md-6">
+                <label>Late Fine</label>
+                @Html.EditorFor(model => model.returnfine, new { htmlAttributes = new { @class = "form-control" } })
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label>Return Date</label>
+                @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label>Deposit Fine</label>
+                @Html.EditorFor(Model => Model.fine, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-space btn-primary" />
+                </div>
+            </div>
+        </div>
+}

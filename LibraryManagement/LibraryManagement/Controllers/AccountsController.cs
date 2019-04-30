@@ -138,8 +138,8 @@ namespace LibraryManagement.Controllers
             var dataItem = db.Accounts.Where(x => x.Username == model.Username && x.Password == passw && x.Role == ddltype).FirstOrDefault();
             if (dataItem != null)
             {
-
-                FormsAuthentication.SetAuthCookie(dataItem.id.ToString(), false);
+                string a = dataItem.id.ToString();
+                FormsAuthentication.SetAuthCookie(dataItem.Username, false);
 
                 if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                          && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -151,9 +151,9 @@ namespace LibraryManagement.Controllers
                     TempData["Success"] = "Login Successfully";
                     Session["User"] = dataItem.id.ToString();
                    
-                    return RedirectToAction("Index", "Accounts");
+                    return RedirectToAction("Index", "DashBoard");
                 }
-                return RedirectToAction("Index", "Accounts");
+                return RedirectToAction("Index", "DashBoard");
             }
             else
             {
@@ -167,7 +167,7 @@ namespace LibraryManagement.Controllers
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Login", "Accounts");
         }
     }
 }

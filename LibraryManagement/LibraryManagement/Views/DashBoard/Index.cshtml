@@ -1,0 +1,153 @@
+﻿@model LibraryManagement.Models.Dahsboard
+@using LibraryManagement.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    dbcontext db = new dbcontext();
+}
+
+<h2>Index</h2>
+<div class="row">
+    <div class="col-12 col-lg-6 col-xl-3">
+        <div class="widget widget-tile">
+            <div class="chart sparkline" id="spark1"><canvas width="85" height="35" style="display: inline-block; width: 85px; height: 35px; vertical-align: top;"></canvas></div>
+            <div class="data-info">
+                <div class="desc">Books</div>
+                <div class="value">
+                    <span class="indicator indicator-equal mdi mdi-chevron-right"></span><span class="number" data-toggle="counter" data-end="113">@Model.TotalBooks</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-3">
+        <div class="widget widget-tile">
+            <div class="chart sparkline" id="spark2"><canvas width="81" height="35" style="display: inline-block; width: 81px; height: 35px; vertical-align: top;"></canvas></div>
+            <div class="data-info">
+                <div class="desc">Total Member</div>
+                <div class="value">
+                    <span class="indicator indicator-positive mdi mdi-chevron-up"></span><span class="number" data-toggle="counter" data-end="80" data-suffix="%">@Model.TodayMember</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-3">
+        <div class="widget widget-tile">
+            <div class="chart sparkline" id="spark3"><canvas width="85" height="35" style="display: inline-block; width: 85px; height: 35px; vertical-align: top;"></canvas></div>
+            <div class="data-info">
+                <div class="desc">Impressions</div>
+                <div class="value">
+                    <span class="indicator indicator-positive mdi mdi-chevron-up"></span><span class="number" data-toggle="counter" data-end="532">532</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-3">
+        <div class="widget widget-tile">
+            <div class="chart sparkline" id="spark4"><canvas width="85" height="35" style="display: inline-block; width: 85px; height: 35px; vertical-align: top;"></canvas></div>
+            <div class="data-info">
+                <div class="desc">Downloads</div>
+                <div class="value">
+                    <span class="indicator indicator-negative mdi mdi-chevron-down"></span><span class="number" data-toggle="counter" data-end="113">113</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Today Due</h3>
+        <hr />
+        <table class="table table-striped table-hover table-fw-widget" id="table3">
+            <thead>
+                <tr>
+                    <th>
+                        Holder Name
+                    </th>
+
+                    <th>
+                        Book Name
+                    </th>
+                    <th>
+                        Issue Book
+                    </th>
+                    <th>
+                        Due Date
+                    </th>
+                    <th>
+                        Return Date
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Today)
+                {
+                    <tr>
+                        <td>
+                            @db.Memberships.Find(item.Mid).StudentName
+                        </td>
+                        <td>
+                            @db.Books.Find(item.Bid).Name
+                        </td>
+
+                        <td>
+                            @Convert.ToDateTime(item.IssueDate).ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Convert.ToDateTime(item.LastDate).ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Convert.ToDateTime(item.ReturnDate).ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                           
+                            <a href="javascript:void(0);" onclick="ReturnBook(@item.Sid)" class="badge badge-danger">Return Book</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade colored-header colored-header-primary" id="form-bp1" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-colored">
+                <h3 class="modal-title">Return Book</h3>
+                <button class="close md-close" type="button" data-dismiss="modal" aria-hidden="true"><span class="mdi mdi-close">       </span></button>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv1">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"
+        integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+        crossorigin="anonymous"></script>
+@section scripts
+{
+    <script>
+
+
+    var ReturnBook=function(Bookid){
+        debugger;
+        var url = "/CheckStatus/ReturnBook?id=" + Bookid;
+       // var url = "/Model/EmployeePartial";
+        $("#myModalBodyDiv1").load(url, function () {
+
+            $("#form-bp1").modal("show");
+
+        })
+
+    }
+    </script>
+}
